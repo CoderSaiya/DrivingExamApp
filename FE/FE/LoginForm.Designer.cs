@@ -226,7 +226,7 @@ namespace FE
             // labelFullNameValue
             // 
             this.labelFullNameValue.AutoSize = true;
-            this.labelFullNameValue.Location = new System.Drawing.Point(259, 220);
+            this.labelFullNameValue.Location = new System.Drawing.Point(259, 260);
             this.labelFullNameValue.Name = "labelFullNameValue";
             this.labelFullNameValue.Size = new System.Drawing.Size(0, 16);
             this.labelFullNameValue.TabIndex = 11;
@@ -245,7 +245,7 @@ namespace FE
             // labelIDNumberValue
             // 
             this.labelIDNumberValue.AutoSize = true;
-            this.labelIDNumberValue.Location = new System.Drawing.Point(259, 255);
+            this.labelIDNumberValue.Location = new System.Drawing.Point(259, 295);
             this.labelIDNumberValue.Name = "labelIDNumberValue";
             this.labelIDNumberValue.Size = new System.Drawing.Size(0, 16);
             this.labelIDNumberValue.TabIndex = 13;
@@ -264,7 +264,7 @@ namespace FE
             // labelAddressValue
             // 
             this.labelAddressValue.AutoSize = true;
-            this.labelAddressValue.Location = new System.Drawing.Point(259, 290);
+            this.labelAddressValue.Location = new System.Drawing.Point(259, 330);
             this.labelAddressValue.Name = "labelAddressValue";
             this.labelAddressValue.Size = new System.Drawing.Size(0, 16);
             this.labelAddressValue.TabIndex = 15;
@@ -283,7 +283,7 @@ namespace FE
             // labelLicenseTypeValue
             // 
             this.labelLicenseTypeValue.AutoSize = true;
-            this.labelLicenseTypeValue.Location = new System.Drawing.Point(259, 325);
+            this.labelLicenseTypeValue.Location = new System.Drawing.Point(259, 365);
             this.labelLicenseTypeValue.Name = "labelLicenseTypeValue";
             this.labelLicenseTypeValue.Size = new System.Drawing.Size(0, 16);
             this.labelLicenseTypeValue.TabIndex = 17;

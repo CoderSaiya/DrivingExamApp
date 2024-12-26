@@ -17,11 +17,12 @@ namespace FE
         private Button btnReview;
         private Button btnCancel;
 
-        private Dictionary<string, Candidate> candidates = new Dictionary<string, Candidate>
+        private Dictionary<(string, string), Candidate> candidates = new Dictionary<(string, string), Candidate>
         {
-            { "1", new Candidate { FullName = "Nguyễn Văn A", IDNumber = "123456789", Address = "Hà Nội", LicenseType = "B1" } },
-            { "2", new Candidate { FullName = "Trần Thị B", IDNumber = "987654321", Address = "Hồ Chí Minh", LicenseType = "A2" } },
-            { "3", new Candidate { FullName = "Lê Văn C", IDNumber = "456123789", Address = "Đà Nẵng", LicenseType = "C" } }
+            { ("Hạng A", "1"), new Candidate { FullName = "THÍ SINH SỐ 1", IDNumber = "123456789", Address = "VIỆT NAM", DriverType = "A1" } },
+            { ("Hạng A", "2"), new Candidate { FullName = "THÍ SINH SỐ 2", IDNumber = "123456789", Address = "VIỆT NAM", DriverType = "A2" } },
+            { ("Hạng A", "3"), new Candidate { FullName = "THÍ SINH SỐ 3", IDNumber = "123456789", Address = "VIỆT NAM", DriverType = "A3" } },
+            { ("Hạng A", "4"), new Candidate { FullName = "THÍ SINH SỐ 4", IDNumber = "123456789", Address = "VIỆT NAM", DriverType = "A4" } }
         };
 
         private Dictionary<string, List<DriverType>> examIDsByLicenseType = new Dictionary<string, List<DriverType>>
@@ -84,7 +85,16 @@ namespace FE
 
         private void CheckCandidateInfo(object sender, EventArgs e)
         {
+            string driverType = cboDriverType.SelectedItem.ToString();
             string examCode = textBox1.Text.Trim();
+
+            // Kiểm tra nếu chưa chọn loại GPLX
+            if (string.IsNullOrEmpty(driverType))
+            {
+                MessageBox.Show("Vui lòng chọn loại GPLX!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                HideCandidateInfo();
+                return;
+            }
 
             // Kiểm tra nếu số báo danh rỗng
             if (string.IsNullOrEmpty(examCode))
@@ -95,7 +105,7 @@ namespace FE
             }
 
             // Kiểm tra thông tin trong dữ liệu giả lập
-            if (candidates.TryGetValue(examCode, out Candidate candidate))
+            if (candidates.TryGetValue((driverType, examCode), out Candidate candidate))
             {
                 // Hiển thị thông tin thí sinh
                 labelFullName.Visible = true;
@@ -112,7 +122,7 @@ namespace FE
 
                 labelLicenseType.Visible = true;
                 labelLicenseTypeValue.Visible = true;
-                labelLicenseTypeValue.Text = candidate.LicenseType;
+                labelLicenseTypeValue.Text = candidate.DriverType;
             }
             else
             {
