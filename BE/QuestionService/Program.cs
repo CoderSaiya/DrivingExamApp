@@ -1,3 +1,5 @@
+using Microsoft.EntityFrameworkCore;
+using QuestionService.Data;
 using QuestionService.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,6 +12,20 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddSingleton<IQuestion, QuestionRepository>();
+
+builder.Services.AddDbContext<QuestionDbContext>(options =>
+    options.UseSqlServer(
+        connectionString: builder.Configuration["ConnectionStrings:DefaultConnection"],
+        sqlServerOptionsAction: sqlOptions =>
+        {
+            sqlOptions.EnableRetryOnFailure(
+                maxRetryCount: 5,
+                maxRetryDelay: TimeSpan.FromSeconds(30),
+                errorNumbersToAdd: null);
+        }),
+    contextLifetime: ServiceLifetime.Scoped,
+    optionsLifetime: ServiceLifetime.Singleton
+);
 
 var app = builder.Build();
 
