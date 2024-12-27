@@ -3,7 +3,7 @@ using RabbitMQ.Client.Events;
 
 namespace SharedLibrary.RabbitMq
 {
-    internal class MessageBroker : IMessageBroker
+    public class MessageBroker : IMessageBroker
     {
         private readonly IConnection connection;
         private readonly IModel channel;
