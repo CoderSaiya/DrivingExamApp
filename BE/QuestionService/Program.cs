@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using QuestionService.Data;
 using QuestionService.Repositories;
+using SharedLibrary.RabbitMq;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +13,9 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddSingleton<IQuestion, QuestionRepository>();
+
+// Register the message broker
+builder.Services.AddSingleton<IMessageBroker, MessageBroker>();
 
 builder.Services.AddDbContext<QuestionDbContext>(options =>
     options.UseSqlServer(
